@@ -106,6 +106,22 @@ class LinkedList {
     return false;
   }
 
+  //find(value) returns the index of the node containing value, or null if not found.
+  find(value) {
+    let currentNode = this.headNode;
+    let index = 0;
+
+    while (currentNode) {
+      if (currentNode.value === value) {
+        return index;
+      }
+
+      currentNode = currentNode.nextNode;
+      index++;
+    }
+    return null;
+  }
+
   //toString represents your LinkedList objects as strings, so you can print
   //them out and preview them in the console.
   //The format should be: ( value ) -> ( value ) -> ( value ) -> null
@@ -141,5 +157,8 @@ console.log(linkedList.pop());
 
 console.log(linkedList.contains(40));
 console.log(linkedList.contains(90));
+
+console.log(linkedList.find(40));
+console.log(linkedList.find(90));
 
 console.log(linkedList.toString());
