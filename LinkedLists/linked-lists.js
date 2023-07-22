@@ -139,6 +139,27 @@ class LinkedList {
     result += "null";
     return result;
   }
+
+  //insertAt(value, index) that inserts a new node with the provided value at the given index.
+  insertAt(value, index) {
+    if (index < 0 || index > this._size) {
+      return "Index out of range";
+    }
+
+    if (index === 0) {
+      return this.prepend(value);
+    }
+
+    if (index === this._size) {
+      return this._append(value);
+    }
+
+    const newNode = new Node(value);
+    let previousNode = this.at(index - 1);
+    newNode.nextNode = previousNode.nextNode;
+    previousNode.nextNode = newNode;
+    this._size++;
+  }
 }
 
 const linkedList = new LinkedList();
@@ -161,4 +182,7 @@ console.log(linkedList.contains(90));
 console.log(linkedList.find(40));
 console.log(linkedList.find(90));
 
+console.log(linkedList.toString());
+
+linkedList.insertAt(50, 1);
 console.log(linkedList.toString());
