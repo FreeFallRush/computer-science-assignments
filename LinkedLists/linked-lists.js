@@ -30,4 +30,21 @@ class LinkedList {
     this.tailNode = newNode;
     this._size++;
   }
+
+  //prepend(value) adds a new node containing value to the start of the list
+  prepend(value) {
+    this.headNode = new Node(value, this.headNode);
+    if (!this.tailNode) {
+      this.tailNode = this.headNode;
+    }
+    this._size++;
+  }
 }
+
+const linkedList = new LinkedList();
+
+linkedList.prepend(30);
+linkedList.append(20);
+linkedList.append(10);
+
+console.log(linkedList);
