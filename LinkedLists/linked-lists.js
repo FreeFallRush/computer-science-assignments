@@ -160,6 +160,21 @@ class LinkedList {
     previousNode.nextNode = newNode;
     this._size++;
   }
+
+  //removeAt(index) that removes the node at the given index.
+  removeAt(index) {
+    if (index < 0 || index >= this._size) {
+      return "Index out of range";
+    }
+    if (index === 0) {
+      this.headNode = this.headNode.nextNode;
+    } else {
+      let previousNode = this.at(index - 1);
+      previousNode.nextNode = previousNode.nextNode.nextNode;
+    }
+    this._size--;
+    return "Successfully removed the element at index " + index;
+  }
 }
 
 const linkedList = new LinkedList();
@@ -185,4 +200,7 @@ console.log(linkedList.find(90));
 console.log(linkedList.toString());
 
 linkedList.insertAt(50, 1);
+console.log(linkedList.toString());
+
+linkedList.removeAt(2);
 console.log(linkedList.toString());
