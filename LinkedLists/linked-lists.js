@@ -54,6 +54,22 @@ class LinkedList {
   tail() {
     return this.tailNode;
   }
+
+  //at(index) returns the node at the given index
+  at(index) {
+    //if index chosen is out of linked list's range
+    if (index < 0 || index >= this._size) {
+      return "Index out of range";
+    }
+
+    //starting from headNode
+    let currentNode = this.headNode;
+    //looping through the linked lists indexes to find chosen one
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.nextNode;
+    }
+    return currentNode;
+  }
 }
 
 const linkedList = new LinkedList();
@@ -66,3 +82,5 @@ console.log(linkedList.size());
 console.log(linkedList.tail());
 console.log(linkedList.head());
 console.log(linkedList);
+
+console.log(linkedList.at(1));
