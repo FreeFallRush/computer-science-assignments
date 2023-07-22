@@ -59,7 +59,10 @@ class LinkedList {
 const linkedList = new LinkedList();
 
 linkedList.prepend(30);
+linkedList.prepend(40);
 linkedList.append(20);
 linkedList.append(10);
-
+console.log(linkedList.size());
+console.log(linkedList.tail());
+console.log(linkedList.head());
 console.log(linkedList);
