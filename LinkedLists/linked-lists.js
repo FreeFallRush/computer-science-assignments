@@ -70,6 +70,47 @@ class LinkedList {
     }
     return currentNode;
   }
+
+  //pop removes the last element from the list
+  pop() {
+    //if linked list is empty
+    if (!this.headNode) {
+      return "There are no elements to remove because this list is empty.";
+    }
+
+    let currentNode = this.headNode;
+    let previousNode = null;
+
+    while (currentNode.nextNode) {
+      previousNode = currentNode;
+      currentNode = currentNode.nextNode;
+    }
+
+    if (previousNode) {
+      previousNode.nextNode = null;
+      this.tailNode = null;
+    }
+    this._size--;
+    return currentNode.value;
+  }
+
+  //toString represents your LinkedList objects as strings, so you can print
+  //them out and preview them in the console.
+  //The format should be: ( value ) -> ( value ) -> ( value ) -> null
+  toString() {
+    if (this._size === 0) {
+      return "This list is empty.";
+    }
+    let currentNode = this.headNode;
+    let result = "";
+
+    while (currentNode) {
+      result += `(${currentNode.value}) -> `;
+      currentNode = currentNode.nextNode;
+    }
+    result += "null";
+    return result;
+  }
 }
 
 const linkedList = new LinkedList();
@@ -84,3 +125,5 @@ console.log(linkedList.head());
 console.log(linkedList);
 
 console.log(linkedList.at(1));
+console.log(linkedList.pop());
+console.log(linkedList.toString());
