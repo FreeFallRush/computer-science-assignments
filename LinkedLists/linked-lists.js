@@ -94,6 +94,18 @@ class LinkedList {
     return currentNode.value;
   }
 
+  //contains(value) returns true if the passed in value is in the list and otherwise returns false.
+  contains(value) {
+    let currentNode = this.headNode;
+    while (currentNode) {
+      if (currentNode.value === value) {
+        return true;
+      }
+      currentNode = currentNode.nextNode;
+    }
+    return false;
+  }
+
   //toString represents your LinkedList objects as strings, so you can print
   //them out and preview them in the console.
   //The format should be: ( value ) -> ( value ) -> ( value ) -> null
@@ -126,4 +138,8 @@ console.log(linkedList);
 
 console.log(linkedList.at(1));
 console.log(linkedList.pop());
+
+console.log(linkedList.contains(40));
+console.log(linkedList.contains(90));
+
 console.log(linkedList.toString());
