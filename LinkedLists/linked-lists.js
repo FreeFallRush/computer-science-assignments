@@ -39,6 +39,21 @@ class LinkedList {
     }
     this._size++;
   }
+
+  //size returns the total number of nodes in the list
+  size() {
+    return this._size;
+  }
+
+  //head returns the first node in the list
+  head() {
+    return this.headNode;
+  }
+
+  //tail returns the last node in the list
+  tail() {
+    return this.tailNode;
+  }
 }
 
 const linkedList = new LinkedList();
