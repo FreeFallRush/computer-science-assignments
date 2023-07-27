@@ -180,6 +180,36 @@ class Tree {
 
     return traverse(this.root);
   }
+
+  // 8. Write a height function which accepts a node and returns its height.
+  //Height is defined as the number of edges in longest path from a given node
+  //to a leaf node.
+  height(node) {
+    if (!node) return -1;
+    return Math.max(this.height(node.left), this.height(node.right)) + 1;
+  }
+
+  // 9. Write a depth function which accepts a node and returns its depth.
+  //Depth is defined as the number of edges in path from a given node to the tree’s root node.
+  depth(node) {
+    let currentNode = this.root;
+    let depth = 0;
+
+    if (!node instanceof Node) return "Not a node!";
+
+    while (currentNode !== null && currentNode.data !== node.data) {
+      if (currentNode.data > node.data) {
+        currentNode = currentNode.left;
+      } else if (currentNode.data < node.data) {
+        currentNode = currentNode.right;
+      }
+      depth++;
+    }
+
+    if (currentNode === null) return `Couldnt find: ${node.data}`;
+
+    return depth;
+  }
 }
 
 //Tip: If you would like to visualize your binary search tree, here is a prettyPrint() function that will console.log your tree
@@ -229,3 +259,12 @@ console.log(myTree.postorder());
 console.log("----------------------");
 console.log("Inorder Traversal:");
 console.log(myTree.inorder());
+
+console.log("----------------------");
+console.log("Height of root node:", myTree.height(myTree.root));
+
+console.log("Height of node:", myTree.height(myTree.find(4)));
+console.log("----------------------");
+
+console.log("Depth of node:", myTree.depth(myTree.find(4)));
+console.log("----------------------");
