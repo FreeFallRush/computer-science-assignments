@@ -112,6 +112,29 @@ class Tree {
     }
     return foundNode;
   }
+
+  // 6. Write a levelOrder function which accepts another function as a parameter. levelOrder should traverse
+  //the tree in breadth-first level order and provide each node as the argument to the provided function.
+  //This function can be implemented using either iteration or recursion (try implementing both!).
+  //The method should return an array of values if no function is given.
+  //Tip: You will want to use an array acting as a queue to keep track of all the child nodes that you have yet to
+  //traverse and to add new ones to the list
+
+  levelOrder(callback = null) {
+    const queue = [this.root];
+    const result = [];
+
+    while (queue.length) {
+      const node = queue.shift();
+      if (node) {
+        result.push(node.data);
+        queue.push(node.left);
+        queue.push(node.right);
+        if (callback) callback(node);
+      }
+    }
+    return result;
+  }
 }
 
 //Tip: If you would like to visualize your binary search tree, here is a prettyPrint() function that will console.log your tree
@@ -145,3 +168,7 @@ prettyPrint(myTree.root);
 
 console.log("----------------------");
 console.log(myTree.find(4));
+
+console.log("----------------------");
+console.log("Level Order Traversal:");
+console.log(myTree.levelOrder());
