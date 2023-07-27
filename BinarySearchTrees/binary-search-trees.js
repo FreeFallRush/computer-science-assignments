@@ -210,6 +210,20 @@ class Tree {
 
     return depth;
   }
+
+  // 10. Write a isBalanced function which checks if the tree is balanced.
+  //A balanced tree is one where the difference between heights of left subtree
+  //and right subtree of every node is not more than 1.
+  isBalanced(node = this.root) {
+    if (!node) return true;
+    const leftHeight = this.height(node.left);
+    const rightHeight = this.height(node.right);
+    const balanced = Math.abs(leftHeight - rightHeight) <= 1;
+
+    return (
+      balanced && this.isBalanced(node.left) && this.isBalanced(node.right)
+    );
+  }
 }
 
 //Tip: If you would like to visualize your binary search tree, here is a prettyPrint() function that will console.log your tree
@@ -268,3 +282,5 @@ console.log("----------------------");
 
 console.log("Depth of node:", myTree.depth(myTree.find(4)));
 console.log("----------------------");
+
+console.log("Is the tree balanced?", myTree.isBalanced());
