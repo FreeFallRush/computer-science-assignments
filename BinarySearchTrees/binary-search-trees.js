@@ -112,3 +112,16 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
 };
+
+const arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
+const myTree = new Tree(arr);
+
+prettyPrint(myTree.root);
+myTree.insert(120);
+myTree.insert(7);
+console.log("----------------------");
+
+prettyPrint(myTree.root);
+console.log("----------------------");
+myTree.delete(67);
+prettyPrint(myTree.root);
