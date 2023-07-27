@@ -96,6 +96,22 @@ class Tree {
     };
     this.root = deleteNode(this.root, value);
   }
+
+  // 5. Write a find function which accepts a value and returns the node with the given value.
+  find(value) {
+    const findNode = (node, val) => {
+      if (!node) return null;
+      if (val === node.data) return node;
+      if (val < node.data) return findNode(node.left, val);
+      return findNode(node.right, val);
+    };
+
+    const foundNode = findNode(this.root, value);
+    if (!foundNode) {
+      console.log(`Value ${value} not found in the tree.`);
+    }
+    return foundNode;
+  }
 }
 
 //Tip: If you would like to visualize your binary search tree, here is a prettyPrint() function that will console.log your tree
@@ -113,6 +129,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
+//testing with example array from assignment
 const arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const myTree = new Tree(arr);
 
@@ -125,3 +142,6 @@ prettyPrint(myTree.root);
 console.log("----------------------");
 myTree.delete(67);
 prettyPrint(myTree.root);
+
+console.log("----------------------");
+console.log(myTree.find(4));
