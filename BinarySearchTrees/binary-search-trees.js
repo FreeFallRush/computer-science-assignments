@@ -135,6 +135,51 @@ class Tree {
     }
     return result;
   }
+
+  // 7. Write inorder, preorder, and postorder functions that accept a function parameter.
+  //Each of these functions should traverse the tree in their respective depth-first order and yield each node to the
+  //provided function given as an argument. The functions should return an array of values if no function is given.
+  inorder(callback = null) {
+    const traverse = (node) => {
+      if (!node) return [];
+
+      const result = [...traverse(node.left), node.data];
+      if (callback) callback(node);
+
+      result.push(...traverse(node.right));
+      return result;
+    };
+    return traverse(this.root);
+  }
+
+  preorder(callback = null) {
+    const traverse = (node) => {
+      if (!node) return [];
+
+      const result = [node.data];
+      if (callback) callback(node);
+
+      result.push(...traverse(node.left));
+      result.push(...traverse(node.right));
+      return result;
+    };
+
+    return traverse(this.root);
+  }
+
+  postorder(callback = null) {
+    const traverse = (node) => {
+      if (!node) return [];
+
+      const result = [...traverse(node.left), ...traverse(node.right)];
+      if (callback) callback(node);
+
+      result.push(node.data);
+      return result;
+    };
+
+    return traverse(this.root);
+  }
 }
 
 //Tip: If you would like to visualize your binary search tree, here is a prettyPrint() function that will console.log your tree
@@ -172,3 +217,15 @@ console.log(myTree.find(4));
 console.log("----------------------");
 console.log("Level Order Traversal:");
 console.log(myTree.levelOrder());
+
+console.log("----------------------");
+console.log("Preorder Traversal:");
+console.log(myTree.preorder());
+
+console.log("----------------------");
+console.log("Postorder Traversal:");
+console.log(myTree.postorder());
+
+console.log("----------------------");
+console.log("Inorder Traversal:");
+console.log(myTree.inorder());
