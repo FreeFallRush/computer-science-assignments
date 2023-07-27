@@ -39,6 +39,63 @@ class Tree {
 
     return buildBST(0, sortedArr.length - 1);
   }
+
+  // 4. Write an insert and delete functions which accepts a value to insert/delete
+  insert(value) {
+    const newNode = new Node(value);
+
+    const insertNode = (node) => {
+      if (value === node.data)
+        return console.log(`The value ${value} already exists`);
+
+      if (value < node.data) {
+        if (!node.left) node.left = newNode;
+        else insertNode(node.left);
+      } else if (value > node.data) {
+        if (!node.right) node.right = newNode;
+        else insertNode(node.right);
+      }
+    };
+
+    if (!this.root) this.root = newNode;
+    else insertNode(this.root);
+  }
+
+  delete(value) {
+    const findMinNode = (node) => {
+      while (node.left) {
+        node = node.left;
+      }
+      return node;
+    };
+
+    const deleteNode = (node, val) => {
+      if (!node) {
+        console.log(`Value ${val} not found in the tree.`);
+        return null;
+      }
+
+      if (val < node.data) {
+        node.left = deleteNode(node.left, val);
+      } else if (val > node.data) {
+        node.right = deleteNode(node.right, val);
+      } else {
+        if (!node.left && !node.right) {
+          node = null;
+        } else if (!node.left) {
+          node = node.right;
+        } else if (!node.right) {
+          node = node.left;
+        } else {
+          const temp = findMinNode(node.right);
+          node.data = temp.data;
+          node.right = deleteNode(node.right, temp.data);
+        }
+      }
+      return node;
+    };
+    this.root = deleteNode(this.root, value);
+  }
 }
 
 //Tip: If you would like to visualize your binary search tree, here is a prettyPrint() function that will console.log your tree
