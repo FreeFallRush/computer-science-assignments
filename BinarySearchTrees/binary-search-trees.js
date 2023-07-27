@@ -224,6 +224,13 @@ class Tree {
       balanced && this.isBalanced(node.left) && this.isBalanced(node.right)
     );
   }
+
+  // 11. Write a rebalance function which rebalances an unbalanced tree.
+  //Tip: You’ll want to use a traversal method to provide a new array to the buildTree function.
+  rebalance() {
+    const values = this.inorder();
+    this.root = this.buildTree(values);
+  }
 }
 
 //Tip: If you would like to visualize your binary search tree, here is a prettyPrint() function that will console.log your tree
@@ -284,3 +291,73 @@ console.log("Depth of node:", myTree.depth(myTree.find(4)));
 console.log("----------------------");
 
 console.log("Is the tree balanced?", myTree.isBalanced());
+
+myTree.insert(55);
+myTree.insert(130);
+myTree.insert(140);
+console.log("----------------------");
+console.log("Is the tree balanced?", myTree.isBalanced());
+myTree.rebalance();
+console.log("Is the tree balanced?", myTree.isBalanced());
+
+console.log("----------------------");
+
+///////////////////////////////////////////////////
+// Write a simple driver script that does the
+//  1. Create a binary search tree from an array of random numbers < 100. You can create a function that returns an array of random numbers every time you call it, if you wish.
+//  2. Confirm that the tree is balanced by calling isBalanced.
+//  3. Print out all elements in level, pre, post, and in order.
+//  4. Unbalance the tree by adding several numbers > 100.
+//  5. Confirm that the tree is unbalanced by calling isBalanced.
+//  6. Balance the tree by calling rebalance.
+//  7. Confirm that the tree is balanced by calling isBalanced.
+//  8. Print out all elements in level, pre, post, and in order.
+
+const getRandomNumbersArray = (size) => {
+  const arr = [];
+  for (let i = 0; i < size; i++) {
+    arr.push(Math.floor(Math.random() * 100)); // Generate numbers between 0 and 99 (both inclusive)
+  }
+  return arr;
+};
+
+const randomArr = getRandomNumbersArray(10);
+console.log(randomArr);
+const tree = new Tree(randomArr);
+console.log("----------DRIVER SCRIPT------------");
+console.log("Is the tree balanced?", tree.isBalanced());
+prettyPrint(tree.root);
+console.log("----------------------");
+console.log("Level Order Traversal:");
+console.log(tree.levelOrder());
+console.log("----------------------");
+console.log("Preorder Traversal:");
+console.log(tree.preorder());
+console.log("----------------------");
+console.log("Postorder Traversal:");
+console.log(tree.postorder());
+console.log("----------------------");
+console.log("Inorder Traversal:");
+console.log(tree.inorder());
+console.log("----------------------");
+tree.insert(44);
+tree.insert(85);
+myTree.insert(88);
+prettyPrint(tree.root);
+console.log("----------------------");
+console.log("Is the tree balanced?", tree.isBalanced());
+tree.rebalance();
+console.log("Is the tree balanced?", tree.isBalanced());
+console.log("----------------------");
+console.log("Level Order Traversal:");
+console.log(tree.levelOrder());
+console.log("----------------------");
+console.log("Preorder Traversal:");
+console.log(tree.preorder());
+console.log("----------------------");
+console.log("Postorder Traversal:");
+console.log(tree.postorder());
+console.log("----------------------");
+console.log("Inorder Traversal:");
+console.log(tree.inorder());
+console.log("----------------------");
