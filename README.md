@@ -91,7 +91,7 @@ Write a simple driver script that does the following:
 ---
 
 Project: Knights Travails
-(https://www.theodinproject.com/lessons/javascript-knights-travails#solutions)
+(https://www.theodinproject.com/lessons/javascript-knights-travails)
 
 Assignment:
 
@@ -109,7 +109,4 @@ You can think of the board as having 2-dimensional coordinates. Your function wo
 4. Use the chosen search algorithm to find the shortest path between the starting square (or node) and the ending square. Output what that full path looks like, e.g.:
    > knightMoves([3,3],[4,3])
    > => You made it in 3 moves! Here's your path:
-   > [3,3]
-   > [4,5]
-   > [2,4]
-   > [4,3]
+   > [3,3] > [4,5] > [2,4] > [4,3]
